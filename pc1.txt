@@ -5,3 +5,11 @@ bne $r2, $r0, -2
 addi $r31, $r31, 4
 jr $r31
 blt $r0, $r3, 500
+
+# dr 5
+# pc 4
+# pc 3
+# dr 5, pc 4
+# pc 5
+# dr 7
+# pc 508

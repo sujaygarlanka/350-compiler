@@ -6,7 +6,7 @@ instructions = [x.strip() for x in instructions]
 file1.close()
 
 
-outputFile = open('mem1.mif','w')
+outputFile = open('pc1.mif','w')
 newLine = lambda: outputFile.write('\n')
 outputFile.write('WIDTH=32;')
 newLine()
@@ -147,7 +147,7 @@ for instrLine in instructions:
         line += opcode[instr[0]]
         line += str(binary_repr(int(instr[1]),27))
         
-    elif instr[0] =='setx:
+    elif instr[0] =='setx':
         line += opcode[instr[0]]
         line += str(binary_repr(int(instr[1]),27))
         
