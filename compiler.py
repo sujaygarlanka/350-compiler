@@ -119,9 +119,38 @@ for instrLine in instructions:
         line += str(binary_repr(int(instr[2][0]),17))
         
     elif instr[0] =='j':
-        line += opcode[0]
-        line += 
-    
+        line += opcode[instr[0]]
+        line += str(binary_repr(int(instr[1]),27))
+        
+    elif instr[0] == 'bne':
+        line += opcode[instr[0]]
+        line += str(binary_repr(int(instr[1][2:]),5))
+        line += str(binary_repr(int(instr[2][2:]),5))
+        line += str(binary_repr(int(instr[3]),17))
+        
+    elif instr[0] =='jal':
+        line += opcode[instr[0]]
+        line += str(binary_repr(int(instr[1]),27))
+        
+    elif instr[0] =='jr':
+        line += opcode[instr[0]]
+        line += str(binary_repr(int(instr[1][2:]),5))
+        line += str(binary_repr(0,22))
+        
+    elif instr[0] == 'blt':
+        line += opcode[instr[0]]
+        line += str(binary_repr(int(instr[1][2:]),5))
+        line += str(binary_repr(int(instr[2][2:]),5))
+        line += str(binary_repr(int(instr[3]),17))
+        
+    elif instr[0] =='bex':
+        line += opcode[instr[0]]
+        line += str(binary_repr(int(instr[1]),27))
+        
+    elif instr[0] =='setx:
+        line += opcode[instr[0]]
+        line += str(binary_repr(int(instr[1]),27))
+        
     line += ';'    
     outputFile.write(line)
     newLine()
