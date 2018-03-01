@@ -147,7 +147,7 @@ for instrLine in instructions:
         line += opcode[instr[0]]
         line += str(binary_repr(int(instr[1]),27))
         
-    elif instr[0] =='setx:
+    elif instr[0] =='setx':
         line += opcode[instr[0]]
         line += str(binary_repr(int(instr[1]),27))
         
