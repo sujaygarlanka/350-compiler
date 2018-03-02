@@ -28,7 +28,7 @@ try:
 except:
     outputFile = open('imem.mif', 'w')
     print("Warning: imem location not specified - writing to current location")
-	
+
 newLine = lambda: outputFile.write('\n')
 outputFile.write('-- Compiled from text: ' + argv[1])
 newLine()
@@ -205,7 +205,6 @@ for instrLine in instructions:
         print "Syntax Error:", str(instrLine)
         print "Details:", e
         sys.exit()
-
         
 if counter <= 4096:
     line = '[' + str(counter) + '..' + '4095]' + ':' + str(binary_repr(0,32)) + ';'
