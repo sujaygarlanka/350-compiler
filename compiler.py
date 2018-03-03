@@ -11,9 +11,9 @@ try:
     print("Text file: " + argv[1])
 except:
     if not argv[1]:
-        print "Error: instruction file not specified" 
+        print("Error: instruction file not specified") 
     else:
-        print "Error: cannot open file:", argv[1] 
+        print("Error: cannot open file:", argv[1])
     sys.exit()
 
 instructions = file1.readlines()
@@ -55,8 +55,20 @@ for instrLine in instructions:
         if not instrLine.rstrip():
             continue
 
-        instr = instrLine.split(' ')
+        instr = instrLine.split(" ")
+
         instr = [x.strip(',') for x in instr] 
+
+        if len(instr) >= 5 :
+            if instr[4] == '#' :
+                continue
+        elif len(instr) >= 4 :
+            if instr[3] == '#' :
+                continue
+        elif len(instr) >= 3 :
+            if instr[2] == '#' :
+                continue
+
         line = str(counter) + ' : '
         if instr[0] == 'add':
             line += opcode[instr[0]]
