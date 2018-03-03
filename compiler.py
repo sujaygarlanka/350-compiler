@@ -55,19 +55,19 @@ for instrLine in instructions:
         if not instrLine.rstrip():
             continue
 
-        instr = instrLine.split(" ")
+        instr = instrLine.split()
 
         instr = [x.strip(',') for x in instr] 
 
-        if len(instr) >= 5 :
-            if instr[4] == '#' :
-                continue
-        elif len(instr) >= 4 :
-            if instr[3] == '#' :
-                continue
-        elif len(instr) >= 3 :
-            if instr[2] == '#' :
-                continue
+        # if len(instr) >= 5 :
+        #     if instr[4] == '#' :
+        #         continue
+        # elif len(instr) >= 4 :
+        #     if instr[3] == '#' :
+        #         continue
+        # elif len(instr) >= 3 :
+        #     if instr[2] == '#' :
+        #         continue
 
         line = str(counter) + ' : '
         if instr[0] == 'add':
