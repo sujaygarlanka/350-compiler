@@ -4,22 +4,29 @@ addi $r3, $r0, 6
 addi $r4, $r0, 200
 
 sw $r1, 0($r2)
-addi $r0, $r0, 1
+nop
+nop
 lw $r6, 0($r2)
 
 sw $r3, 0($r4)
-addi $r0, $r0, 1
-lw $r7, 0($r4)cd
+nop
+nop
+lw $r7, 0($r4)
 
 addi $r0, $r0, 1
 lw $r8, 100($r2)
 
 sw $r3, 30($r4)
-addi $r0, $r0, 1
+nop
+nop
 lw $r9, 130($r2)
 
 cycles 30
 
+checkreg 1, 5
+checkreg 2, 100
+checkreg 3, 6
+checkreg 4, 200
 checkreg 6, 5
 checkreg 7, 6
 checkreg 8, 6
