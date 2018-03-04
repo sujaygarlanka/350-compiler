@@ -18,7 +18,7 @@ sw $r3, 30($r4)
 addi $r0, $r0, 1
 lw $r9, 130($r2)
 
-cycles 30
+cycles 400
 
 checkreg 6, 5
 checkreg 7, 6

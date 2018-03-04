@@ -6,24 +6,24 @@ addi $r1, $r2, 2
 addi $r3, $r2, 1
 add $r3, $r1, $r3
 sub $r2, $r3, $r1
-and $r4, $r1, $r3
-or $r5, $r1, $r3
-addi $r6, $r0, 7470
-sll $r6, $r6, 5
-addi $r7, $r0, -2382
-sub $r8, $r7, $r5
+# and $r4, $r1, $r3
+# or $r5, $r1, $r3
+# addi $r6, $r0, 7470
+# sll $r6, $r6, 5
+# addi $r7, $r0, -2382
+# sub $r8, $r7, $r5
 
 # "cycles 30" runs the clock for 30 cycles before checking registers for correctness
 
-cycles 30
+cycles 100
 
 # "checkreg A, B" checks register "A" for value "B".
 
 checkreg 1, 2
 checkreg 2, 1
 checkreg 3, 3
-checkreg 4, 2
-checkreg 5, 3
-checkreg 6, 239040
-checkreg 7, -2382
-checkreg 8, -2385
+# checkreg 4, 2
+# checkreg 5, 3
+# checkreg 6, 239040
+# checkreg 7, -2382
+# checkreg 8, -2385

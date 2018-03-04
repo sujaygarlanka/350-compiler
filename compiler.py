@@ -1,4 +1,4 @@
-from numpy import binary_repr
+from numpy import binary_repr, base_repr
 from sys import argv
 import sys
 import shutil
@@ -55,7 +55,7 @@ for instrLine in instructions:
         if not instrLine.rstrip():
             continue
 
-        instr = instrLine.split(' ')
+        instr = instrLine.split()
         instr = [x.strip(',') for x in instr] 
         line = str(counter) + ' : '
         if instr[0] == 'add':
@@ -144,7 +144,6 @@ for instrLine in instructions:
             line += '00111'
             line += str(binary_repr(0,2))
             
-            
         elif instr[0] == 'sw' or instr[0] == 'lw':
             line += opcode[instr[0]]
             line += str(binary_repr(int(instr[1][2:]),5))
@@ -165,10 +164,11 @@ for instrLine in instructions:
         elif instr[0] =='jal':
             line += opcode[instr[0]]
             line += str(binary_repr(int(instr[1]),27))
-            ECE
+
         elif instr[0] =='jr':
+            b = str(binary_repr(int(instr[1][2:]),6))
             line += opcode[instr[0]]
-            line += str(binary_repr(int(instr[1][2:]),5))
+            line += b[1:6]
             line += str(binary_repr(0,22))
             
         elif instr[0] == 'blt':
