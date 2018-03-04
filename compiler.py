@@ -177,7 +177,7 @@ for instrLine in instructions:
         elif instr[0] =='jal':
             line += opcode[instr[0]]
             line += str(binary_repr(int(instr[1]),27))
-            ECE
+            
         elif instr[0] =='jr':
             line += opcode[instr[0]]
             line += str(binary_repr(int(instr[1][2:]),5))
