@@ -8,7 +8,7 @@ module processor_tb_auto();
 
 	integer CYCLE_LIMIT = CYCLE_LIMIT_AUTO_GENERATE; // Modify this to change number of cycles run during test
 
-	reg clock = 0, reset = 0;
+	reg clock = 0, reset = 1;
 	integer cycle_count = 0, error_count = 0;
 	
 	// Probes
@@ -58,14 +58,14 @@ module processor_tb_auto();
 	wire [31:0] memory_instruction = dut.my_processor.latch_xm_instruction_out;
 	wire [31:0] writeback_instruction = dut.my_processor.latch_mw_instruction_out;
 
-
 	// DUT 
 	skeleton dut(clock, reset);
 	
 	// Main: wait specified cycles, then perform tests
 	initial begin
-		$display($time, ":  << Starting Test >>");	
-		#(20*(CYCLE_LIMIT+1.5))
+		$display($time, ":  << Starting Test >>");
+		#12 reset = 0;	
+		#(20*(CYCLE_LIMIT+1.5));
 		performTests();		
 		$display($time, ":  << Test Complete >>");
 		$display("Errors: %d" , error_count);
@@ -78,7 +78,14 @@ module processor_tb_auto();
 	end
 	
 	always begin
-		#20   cycle_count = cycle_count + 1;
+		@(posedge clock);
+		if (reset != 1) begin
+			cycle_count = cycle_count + 1;
+		end
+	end
+
+	always begin
+		#10 $display("Current Cycle: %d. Current PC: %b",cycle_count, pc[11:0]); // toggle every half-cycles
 	end
 	
 	task checkRegister; // Note: this assumes regfile works properly and has a 2D array "register_output" that  holds all register values
