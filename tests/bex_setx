@@ -1,0 +1,25 @@
+# Simple tester
+# Tests instructions: sll
+# ** Comments must have a space between "#"" and text **
+
+setx 7
+bex 4
+addi $r4, $r0, 4		# nskipped
+addi $r5, $r0, 5		# nskipped
+addi $r6, $r0, 6		# resume
+addi $r7, $r0, 7
+
+
+
+
+# "cycles 30" runs the clock for 30 cycles before checking registers for correctness
+
+cycles 50
+
+# "checkreg A, B" checks register "A" for value "B".
+
+ checkreg 30, 7
+ checkreg 4, 0
+ checkreg 5, 0
+ checkreg 6, 6
+ checkreg 7, 7
