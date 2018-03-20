@@ -1,0 +1,23 @@
+addi $r1, $r0, 10
+nop
+nop
+jal 12
+nop
+nop
+nop
+sub $r9, $r8, $r1
+j 17
+nop
+nop
+nop
+nop
+nop
+addi $r8, $r0, 4
+jr $r31
+nop
+nop
+nop
+
+checkreg 1, 10
+checkreg 8, 4
+checkreg 9, -6

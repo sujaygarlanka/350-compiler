@@ -12,7 +12,7 @@ module processor_tb_auto();
 	integer cycle_count = 0, error_count = 0;
 	
 	// Probes
-	wire [31:0] pc = dut.my_processor.pc_out;
+		wire [31:0] pc = dut.my_processor.pc_out;
 	wire [31:0] mem_data_in = dut.my_processor.mem_data_in;
 	wire [31:0] data = dut.my_processor.data;
 	wire [31:0] memData = dut.my_processor.memData;
@@ -34,6 +34,18 @@ module processor_tb_auto();
 	wire [16:0] alu_wimm = dut.my_processor.my_alu.q_imem[16:0];
 	wire [31:0] decode_latch_in = dut.my_processor.instr_decode_in;
 	wire [31:0] decode_latch_out = dut.my_processor.instr_execute_in;
+
+	wire fds = dut.my_processor.haz.fds;
+	wire fxs = dut.my_processor.haz.fxs;
+	wire fdt = dut.my_processor.haz.fdt;
+	wire fxt = dut.my_processor.haz.fxt;
+	wire isHazard = dut.my_processor.haz.isHazard;
+	wire [31:0] pc_ctrlOut = dut.my_processor.my_alu.pc_ctrlOut;
+	wire [31:0] pc_chooseJ = dut.my_processor.my_alu.pc_chooseJ;
+	wire pc_ctrlJr = dut.my_processor.my_alu.ctrl_jr;
+	wire alu_isNotEqual = dut.my_processor.my_alu.isNotEqual;
+	wire alu_isLessThan = dut.my_processor.my_alu.isLessThan;
+	wire [4:0] actual_aluOp = dut.my_processor.my_alu.actual_aluOp;
 	
 	// DUT 
 	skeleton dut(clock, reset);
