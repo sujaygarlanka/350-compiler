@@ -1,9 +1,9 @@
 addi $r1, $r0, 1
-blt $r0, $r1, 1
+blt $r1, $r1, 1
 addi $r1, $r1, 1 
 nop
 nop
 
 cycles 10
 
-checkreg 1, 1
+checkreg 1, 2

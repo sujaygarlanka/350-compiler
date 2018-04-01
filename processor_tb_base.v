@@ -70,7 +70,7 @@ module processor_tb_auto();
 	wire exec_write_exception = dut.my_processor.execute.exception;
 	
 	// DUT 
-	skeleton dut(clock, reset);
+	skeleton_ta dut(clock, reset);
 	
 	// Main: wait specified cycles, then perform tests
 	initial begin
