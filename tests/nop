@@ -1,5 +1,0 @@
-addi $r0, $r0, 0
-
-cycles 10
-
-checkreg 0, 0
