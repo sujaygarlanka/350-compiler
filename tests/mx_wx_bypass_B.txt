@@ -1,5 +1,5 @@
 addi $r1, $r0, 5
-# add  $r2, $r20, $r21 
+add  $r2, $r20, $r21 
 add  $r3, $r22, $r1
 add  $r4, $r23, $r3
 
