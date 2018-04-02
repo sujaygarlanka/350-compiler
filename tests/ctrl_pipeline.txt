@@ -15,12 +15,12 @@ bne $r6, $r3, 1			# will branch
 addi $r7, $r7, 5
 jal 18 					# 2nd bne;
 sub $r9, $r8, $r1 		# jr $r31 here (16)
-j 56					# last insn run
+j 20					# last insn run
 addi $r8, $r0, 4		# j here
 jr $r31
+addi $r10, $r0, 0
 
-
-cycles 150
+cycles 50 # 9 + 5
 
 checkreg 1, 10
 checkreg 2, 0
@@ -31,5 +31,6 @@ checkreg 6, 160
 checkreg 7, 0
 checkreg 8, 4
 checkreg 9, -6
+checkreg 10, 0
 
-#	Tests jr, j, blt, bne, jal (without data/control hazards)
+#	Tests jr, j, blt, bne, jal (with data/control hazards)

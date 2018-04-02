@@ -19,7 +19,7 @@ addi $r5, $r0, 5
 
 # "cycles 30" runs the clock for 30 cycles before checking registers for correctness
 
-cycles 10
+cycles 20
 
 # "checkreg A, B" checks register "A" for value "B".
 

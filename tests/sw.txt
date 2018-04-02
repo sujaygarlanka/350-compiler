@@ -8,9 +8,9 @@ sw $r1, 0($r5)
 lw $r2,	0($r5)
 sw $r2, 0($r2)
 lw $r3, 0($r2)
-bne $r3, $r15, 0
-addi $r4, $r0, 4		# nskipped
-addi $r5, $r0, 5		# nskipped
+bne $r3, $r15, 2
+addi $r4, $r0, 4		# skipped
+addi $r5, $r0, 5		# skipped
 addi $r6, $r0, 6		# resume
 addi $r7, $r0, 7
 
@@ -25,7 +25,8 @@ cycles 50
  checkreg 1, 7
  checkreg 2, 7
  checkreg 3, 7
- checkreg 4, 4
- checkreg 5, 5
+ checkreg 4, 0
+ checkreg 5, 0
  checkreg 6, 6
  checkreg 7, 7
+ checkreg 15, 6
