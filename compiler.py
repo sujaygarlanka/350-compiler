@@ -1,4 +1,4 @@
-from numpy import binary_repr
+from numpy import binary_repr, base_repr
 from sys import argv
 import sys
 import shutil
@@ -11,9 +11,9 @@ try:
     print("Text file: " + argv[1])
 except:
     if not argv[1]:
-        print("Error: instruction file not specified") 
+        print "Error: instruction file not specified" 
     else:
-        print("Error: cannot open file:", argv[1])
+        print "Error: cannot open file:", argv[1] 
     sys.exit()
 
 instructions = file1.readlines()
@@ -56,19 +56,7 @@ for instrLine in instructions:
             continue
 
         instr = instrLine.split()
-
         instr = [x.strip(',') for x in instr] 
-
-        # if len(instr) >= 5 :
-        #     if instr[4] == '#' :
-        #         continue
-        # elif len(instr) >= 4 :
-        #     if instr[3] == '#' :
-        #         continue
-        # elif len(instr) >= 3 :
-        #     if instr[2] == '#' :
-        #         continue
-
         line = str(counter) + ' : '
         if instr[0] == 'add':
             line += opcode[instr[0]]
@@ -156,7 +144,6 @@ for instrLine in instructions:
             line += '00111'
             line += str(binary_repr(0,2))
             
-            
         elif instr[0] == 'sw' or instr[0] == 'lw':
             line += opcode[instr[0]]
             line += str(binary_repr(int(instr[1][2:]),5))
@@ -177,10 +164,12 @@ for instrLine in instructions:
         elif instr[0] =='jal':
             line += opcode[instr[0]]
             line += str(binary_repr(int(instr[1]),27))
-            
+
         elif instr[0] =='jr':
+            a = ''.join(c for c in instr[1] if c.isdigit())
+            b = str(binary_repr(int(a),6))
             line += opcode[instr[0]]
-            line += str(binary_repr(int(instr[1][2:]),5))
+            line += b[1:6]
             line += str(binary_repr(0,22))
             
         elif instr[0] == 'blt':
