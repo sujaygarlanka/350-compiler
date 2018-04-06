@@ -7,19 +7,9 @@ add $r2, $r1, $r0 		# $r2 = 0 + 3 = 3
 add $r3, $r2, $r1 		# $r3 = 3 + 3 = 6
 bne $r3, $r2, 2
 addi $r7, $r0, -99 		# skipped	
-addi $r8, $r0, 666    	# $r9 = 0 + 666 = 666
+addi $r8, $r0, 666    	# skipped
 addi $r9, $r0, 999    	# $r9 = 0 + 666 = 666
 addi $r10, $r0, 10
-
-# mul
-# div 
-
-# sw $r7, 1($r1)			# MEM[3 + 1] = 12				#9 10
-# lw $r11, 1($r1)			# $r11 = MEM[3 + 1] = 12		#10 11
-
-# j 0						# PC = 0						#11
-
-# "cycles 30" runs the clock for 30 cycles before checking registers for correctness
 
 cycles 20
 
