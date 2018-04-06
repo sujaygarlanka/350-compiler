@@ -166,7 +166,8 @@ for instrLine in instructions:
             line += str(binary_repr(int(instr[1]),27))
 
         elif instr[0] =='jr':
-            b = str(binary_repr(int(instr[1][2:]),6))
+            a = ''.join(c for c in instr[1] if c.isdigit())
+            b = str(binary_repr(int(a),6))
             line += opcode[instr[0]]
             line += b[1:6]
             line += str(binary_repr(0,22))

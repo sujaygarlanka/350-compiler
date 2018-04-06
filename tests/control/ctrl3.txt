@@ -1,0 +1,12 @@
+addi $r1, $r0, 10
+jal  4					# will jump, and save to $r31
+sub $r9, $r8, $r1
+j 6
+addi $r8, $r0, 4
+jr $31
+
+cycles 40
+
+checkreg 1, 10
+checkreg 8, 4
+checkreg 9, -6

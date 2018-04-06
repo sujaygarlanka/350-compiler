@@ -18,6 +18,8 @@ nop
 nop
 nop
 
+cycles 100
+
 checkreg 1, 10
 checkreg 8, 4
 checkreg 9, -6

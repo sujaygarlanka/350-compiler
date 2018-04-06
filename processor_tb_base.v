@@ -8,7 +8,7 @@ module processor_tb_auto();
 
 	integer CYCLE_LIMIT = CYCLE_LIMIT_AUTO_GENERATE; // Modify this to change number of cycles run during test
 
-	reg clock = 0, reset = 1;
+	reg clock = 0, reset = 0;
 	integer cycle_count = 0, error_count = 0;
 	
 	// Probes
@@ -16,6 +16,8 @@ module processor_tb_auto();
 	wire [31:0] r1 = dut.my_regfile.register_output[1];
 	wire [31:0] r2 = dut.my_regfile.register_output[2];
 	wire [31:0] r3 = dut.my_regfile.register_output[3];
+	wire [31:0] r4 = dut.my_regfile.register_output[4];
+	wire [31:0] r5 = dut.my_regfile.register_output[5];
 	wire [31:0] r31 = dut.my_regfile.register_output[31];
 
 	wire [4:0] alu_op = dut.my_processor.execute.ctrl_alu_op;
@@ -29,12 +31,9 @@ module processor_tb_auto();
 	wire [4:0] regfile_ctrlB = dut.my_processor.ctrl_readRegB;
 	wire [4:0] decode_ctrl_b = dut.my_processor.ctrl_readRegB;
 	wire [31:0] q_dmem = dut.my_processor.q_dmem;
-	wire stall = dut.my_processor.hazard_stall;
-	wire s1 = dut.my_processor.stall_hazard.fd_rs1__is__dx_rd;
-	wire s2 = dut.my_processor.stall_hazard.fd_rs2__is__dx_rd;
-	wire s3 = dut.my_processor.stall_hazard.fd_rs1__is__xm_rd;
-	wire s4 = dut.my_processor.stall_hazard.fd_rs2__is__xm_rd;
 	wire [31:0] pcout = dut.my_processor.pc.pc_out;
+	wire pc_ctrl_ena_in = dut.my_processor.pc_control_enable;
+	wire pc_ctrl_ena_out = dut.my_processor.latch_pc_control_enable;
 
 	wire [31:0] pc_pc_in = dut.my_processor.latch_pc_pc_in;
 	wire [31:0] pc_pc_out = dut.my_processor.latch_pc_pc_out;
@@ -64,7 +63,6 @@ module processor_tb_auto();
 	// Main: wait specified cycles, then perform tests
 	initial begin
 		$display($time, ":  << Starting Test >>");
-		#12 reset = 0;	
 		#(20*(CYCLE_LIMIT+1.5));
 		performTests();		
 		$display($time, ":  << Test Complete >>");
@@ -79,21 +77,15 @@ module processor_tb_auto();
 	
 	always begin
 		@(posedge clock);
-		if (reset != 1) begin
-			cycle_count = cycle_count + 1;
-		end
+		cycle_count = cycle_count + 1;
 	end
 
-	always begin
-		#10 $display("Current Cycle: %d. Current PC: %b",cycle_count, pc[11:0]); // toggle every half-cycles
-	end
-	
 	task checkRegister; // Note: this assumes regfile works properly and has a 2D array "register_output" that  holds all register values
 		input [4:0] reg_num;
 		input [31:0] expected_value;
 		begin
 			if(dut.my_regfile.register_output[reg_num] !== expected_value) begin
-				$display("Error: register $%d (expected: %h, read: %h)", reg_num, expected_value, dut.my_regfile.register_output[reg_num]);
+				$display("Error: register $%d (expected: %d, read: %d)", reg_num, $signed(expected_value), $signed(dut.my_regfile.register_output[reg_num]));
 				error_count = error_count + 1;
 			end
 		end
