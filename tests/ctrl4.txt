@@ -1,0 +1,48 @@
+addi $r1, $r0, 3
+jr $r1
+addi $r1, $r1, 10
+addi $r1, $r1, 1
+addi $r2, $r0, 150
+addi $r3, $r0, -160
+j 8
+addi $r3, $r3, 320
+blt $r3, $r2, 4 		# will branch
+addi $r4, $r0, 5
+addi $r1, $r1, 1000    	# won't do
+addi $r2, $r2, 1000		#   .
+addi $r3, $r3, 1000		#	.
+addi $r5, $r3, 310	
+bne $r5, $r2, 4			# won't branch
+nop
+nop
+nop
+addi $r6, $r6, 160
+bne $r6, $r3, 4			# will branch
+addi $r1, $r1, 1000    	# won't do
+addi $r2, $r2, 1000		#   .
+addi $r3, $r3, 1000		#	.
+addi $r7, $r7, 5
+nop
+jal  28					# will jump, and save to $r31
+sub $r9, $r8, $r1
+j 31
+addi $r8, $r0, 5
+jr $r31
+addi $r10, $r0, 25
+
+
+cycles 200
+
+checkreg 0, 0
+checkreg 1, 4
+checkreg 2, 150
+checkreg 3, -160
+checkreg 4, 0
+checkreg 5, 150
+checkreg 6, 160
+checkreg 7, 0
+checkreg 8, 5
+checkreg 9, 1
+checkreg 10, 0
+
+#	Tests jr, j, blt, bne, jal (without data/control hazards)
